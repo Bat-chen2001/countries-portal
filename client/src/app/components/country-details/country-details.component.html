@@ -1,0 +1,16 @@
+<div class="countryDetailsContainer">
+    <h1>country details</h1>
+    <div class="formContainer">
+        <div class="countryDetails" [formGroup]="form">
+            <div *ngFor="let controlName of formControlNames" class="editDetails">
+                <label [for]="controlName">{{ controlName }}: </label>
+                <input type="text" [formControlName]="controlName">
+                <mat-error *ngIf="form.get(controlName).hasError('required')">Field required</mat-error>
+                <br>
+            </div>
+            <img [src]="(country$ | async)?.flag" class="flag">
+            <br>
+            <button class="update" (click)="updateFields()">Update</button>
+        </div>
+    </div>
+</div>
