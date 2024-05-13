@@ -1,16 +1,23 @@
-<div class="countryDetailsContainer">
+<div class="country-details-container">
     <h1>country details</h1>
-    <div class="formContainer">
-        <div class="countryDetails" [formGroup]="form">
-            <div *ngFor="let controlName of formControlNames" class="editDetails">
-                <label [for]="controlName">{{ controlName }}: </label>
-                <input type="text" [formControlName]="controlName">
-                <mat-error *ngIf="form.get(controlName).hasError('required')">Field required</mat-error>
-                <br>
+    <div class="form-container">
+        <div class="country-details" [formGroup]="form">
+            <div *ngFor="let controlName of formControlNames">
+                <mat-form-field class="form-field">
+                    <mat-label>{{ controlName }}:</mat-label>
+                    <input matInput [formControlName]="controlName" [readonly]="isReadOnly(controlName)"
+                        [placeholder]="controlName">
+                    @if (form.get(controlName)?.hasError('required')) {
+                    <mat-error>{{controlName}} is <strong>required</strong></mat-error>
+                    }
+                </mat-form-field>
             </div>
-            <img [src]="(country$ | async)?.flag" class="flag">
-            <br>
-            <button class="update" (click)="updateFields()">Update</button>
+            <img [src]="(country$ | async)?.flag" class="flag-img">
+            <div class="buttons-container">
+                <button mat-flat-button class="button" (click)="goBack()">Back</button>
+                <button mat-flat-button class="button" (click)="updateFields()"
+                    [disabled]="!form.dirty || isFormDirtyOrInvalid()">Update</button>
+            </div>
         </div>
     </div>
 </div>

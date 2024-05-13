@@ -2,24 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription, filter, map } from 'rxjs';
 import { ICountry } from '../../interface/ICountry';
-import * as CountryActions from '../../states/country/country.action';
 import * as CountrySelector from '../../states/country/country.selector';
+import * as CountryActions from '../../states/country/country.action';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AsyncPipe, NgFor } from '@angular/common';
 import {
   FormBuilder,
-  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CountryApiService } from '../../services/country-api-services';
 import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-country-details',
   standalone: true,
-  imports: [AsyncPipe, NgFor, ReactiveFormsModule, MatInputModule],
+  imports: [
+    AsyncPipe,
+    NgFor,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+  ],
   templateUrl: './country-details.component.html',
   styleUrl: './country-details.component.scss',
 })
@@ -31,14 +37,24 @@ export class CountryDetailsComponent implements OnInit {
   formControlNames = ['name', 'region', 'subRegion', 'capital', 'population'];
   paramsId: string = '';
   form!: FormGroup;
+  disabled = true;
 
+  isReadOnly(controlName: string): boolean {
+    return controlName !== 'population' && controlName !== 'capital';
+  }
+  isFormDirtyOrInvalid(): boolean {
+    return this.form.dirty && this.form.invalid;
+  }
+  goBack() {
+    this.router.navigate(['/']);
+  }
   updateFields(): void {
     const updatedCountry: ICountry = {
       ...this.form.value,
       capital: this.form.value.capital.toString()?.split(',') || [''],
       id: this.paramsId,
     };
-
+    console.log(updatedCountry);
     this.api.updateCountries(this.paramsId, updatedCountry).subscribe({
       next: () => {
         this.router.navigate(['/']);

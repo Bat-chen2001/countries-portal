@@ -11,11 +11,19 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-country',
   standalone: true,
-  imports: [AsyncPipe, NgFor, MatTableModule, MatSortModule, MatIcon],
+  imports: [
+    AsyncPipe,
+    NgFor,
+    MatTableModule,
+    MatSortModule,
+    MatIcon,
+    MatPaginatorModule,
+  ],
   templateUrl: './country.component.html',
   styleUrl: './country.component.scss',
 })
