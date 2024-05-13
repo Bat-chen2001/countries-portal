@@ -2,9 +2,9 @@
   width: 80%;
   height: 100%;
   margin: 0 auto;
-//   .mat-elevation-z8 {
-//     background-color: darkgray;
-//   }
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 table {
@@ -17,7 +17,7 @@ th {
   font-weight: bold;
   padding: 12px 15px;
   background-color: #f2f2f2;
-  font-size: 1.1em;
+  font-size: 1.3em;
 }
 .mat-mdc-row:hover .mat-mdc-cell {
   background-color: rgba(0, 0, 0, 0.05);
@@ -29,8 +29,14 @@ th {
   font-weight: bold;
 }
 
-caption {
-  font-size: 1.5em;
-  font-weight: bold;
-  margin-bottom: 10px;
+h1 {
+  font-size: 33px;
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+}
+.paginator{
+   font-size: 18px;
+   text-transform: uppercase;
+   
 }
