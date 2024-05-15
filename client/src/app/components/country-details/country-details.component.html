@@ -5,8 +5,7 @@
             <div *ngFor="let controlName of formControlNames">
                 <mat-form-field class="form-field">
                     <mat-label>{{ controlName }}:</mat-label>
-                    <input matInput [formControlName]="controlName" [readonly]="isReadOnly(controlName)"
-                        [placeholder]="controlName">
+                    <input matInput [formControlName]="controlName" [readonly]="isReadOnly(controlName)">
                     @if (form.get(controlName)?.hasError('required')) {
                     <mat-error>{{controlName}} is <strong>required</strong></mat-error>
                     }
