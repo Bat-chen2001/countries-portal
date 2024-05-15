@@ -16,7 +16,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     provideState({ name: 'country', reducer: countryReducer }),
-    provideAnimationsAsync(),
-    provideAnimationsAsync(),
   ],
 };

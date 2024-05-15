@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, inject } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICountry } from '../../interface/ICountry';
-import { CountryApiService } from '../../services/country-api-services';
 import * as CountryActions from '../../states/country/country.action';
 import * as CountrySelector from '../../states/country/country.selector';
 import { AsyncPipe, NgFor } from '@angular/common';
@@ -31,13 +29,11 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 export class CountryComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  http = inject(HttpClient);
-
-  countryApi = inject(CountryApiService);
-
   countries$!: Observable<ICountry[]>;
 
   error$!: Observable<string | null>;
+
+  dataSource: MatTableDataSource<ICountry> = new MatTableDataSource<ICountry>();
 
   displayColumns: string[] = [
     'index',
@@ -59,8 +55,6 @@ export class CountryComponent implements OnInit {
     'Edit',
   ];
 
-  dataSource: MatTableDataSource<ICountry> = new MatTableDataSource<ICountry>();
-
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
@@ -79,6 +73,6 @@ export class CountryComponent implements OnInit {
   navigateToDetails(id: string) {
     this.router.navigate(['/countryDetails', id]);
   }
-  
+
   ngOnInit(): void {}
 }

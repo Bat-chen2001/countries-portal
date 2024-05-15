@@ -1,4 +1,8 @@
 <div class="tableContainer">
+    @if (error$|async) {
+    <p>{{error$|async}}</p>
+    }
+    @else{
     <h1>Country portal</h1>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="index">
@@ -22,6 +26,7 @@
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
     </table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[15]" showFirstLastButtons
+    <mat-paginator class="paginator" [pageSizeOptions]="[15,10,20]" showFirstLastButtons
         aria-label="Select page of periodic elements" />
+    }
 </div>
