@@ -10,6 +10,9 @@
                     @if (form.get(controlName)?.hasError('required')) {
                     <mat-error>{{controlName}} is <strong>required</strong></mat-error>
                     }
+                    @if (form.get(controlName)?.hasError('pattern')) {
+                    <mat-error>Only <strong>numbers</strong> are allowed for {{ controlName }} </mat-error>
+                    }
                 </mat-form-field>
             </div>
             <img [src]="(country$ | async)?.flag" class="flag-img">

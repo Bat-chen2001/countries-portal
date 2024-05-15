@@ -83,7 +83,10 @@ export class CountryDetailsComponent implements OnInit {
           subRegion: [country.subRegion, Validators.required],
           capital: [country.capital, Validators.required],
           flag: [country.flag, Validators.required],
-          population: [country.population, [Validators.required]],
+          population: [
+            country.population,
+            [Validators.required, Validators.pattern('^[0-9]+$')],
+          ],
         });
       }
     });
@@ -91,3 +94,4 @@ export class CountryDetailsComponent implements OnInit {
 
   ngOnInit(): void {}
 }
+
