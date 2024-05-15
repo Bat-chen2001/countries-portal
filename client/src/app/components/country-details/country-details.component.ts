@@ -45,6 +45,7 @@ export class CountryDetailsComponent implements OnInit {
   isFormDirtyOrInvalid(): boolean {
     return this.form.dirty && this.form.invalid;
   }
+
   goBack() {
     this.router.navigate(['/']);
   }
@@ -54,10 +55,9 @@ export class CountryDetailsComponent implements OnInit {
       capital: this.form.value.capital.toString()?.split(',') || [''],
       id: this.paramsId,
     };
-    console.log(updatedCountry);
     this.api.updateCountries(this.paramsId, updatedCountry).subscribe({
       next: () => {
-        this.router.navigate(['/']);
+       this.goBack();
       },
     });
   }

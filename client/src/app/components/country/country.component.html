@@ -22,5 +22,6 @@
         <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayColumns;"></tr>
     </table>
-    <mat-paginator class="paginator" [pageSizeOptions]="[15]" showFirstLastButtons aria-label="Select page of periodic elements"/>
+    <mat-paginator class="paginator" [pageSizeOptions]="[15]" showFirstLastButtons
+        aria-label="Select page of periodic elements" />
 </div>

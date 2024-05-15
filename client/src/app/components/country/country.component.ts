@@ -72,13 +72,13 @@ export class CountryComponent implements OnInit {
     this.store.dispatch(CountryActions.loadCountry());
     this.countries$ = this.store.select(CountrySelector.selectAllCountry);
     this.error$ = this.store.select(CountrySelector.selectCountryError);
-   this.countries$.subscribe((countries) => {
-     this.dataSource.data = countries;
-   });
-
+    this.countries$.subscribe((countries) => {
+      this.dataSource.data = countries;
+    });
   }
   navigateToDetails(id: string) {
     this.router.navigate(['/countryDetails', id]);
   }
+  
   ngOnInit(): void {}
 }

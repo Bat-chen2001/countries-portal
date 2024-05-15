@@ -1,26 +1,23 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { ICountry } from '../interface/ICountry';
 
 @Injectable({ providedIn: 'root' })
 export class CountryApiService {
-  http = inject(HttpClient);
+  private baseUrl = 'https://localhost:7039/api/Country';
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  getCountries() {
-    return this.http.get<ICountry[]>('https://localhost:7039/api/Country').pipe(
-      map((countries: ICountry[]) => {
-        return countries.map((country: ICountry) => {
-          return { ...country };
-        });
-      })
-    );
+  getCountries(): Observable<ICountry[]> {
+    return this.http
+      .get<ICountry[]>(this.baseUrl)
+      .pipe(map((countries) => countries.map((country) => ({ ...country }))));
   }
 
   updateCountries(id: string, country: ICountry): Observable<ICountry> {
-    const url = `https://localhost:7039/api/Country?id=${id}`;
+    const url = `${this.baseUrl}?id=${id}`;
     return this.http.put<ICountry>(url, country);
   }
 }
