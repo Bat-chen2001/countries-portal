@@ -10,6 +10,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatIcon } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-country',
@@ -22,6 +23,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
     MatIcon,
     MatPaginatorModule,
     MatPaginator,
+    MatInputModule,
   ],
   templateUrl: './country.component.html',
   styleUrl: './country.component.scss',
@@ -58,6 +60,18 @@ export class CountryComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
+  updateDataSource(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    const searchText = inputElement.value;
+    this.countries$.subscribe(
+      (countries) =>
+        (this.dataSource.data = countries.filter(
+          (country) =>
+            country.name.toLocaleLowerCase().includes(searchText) ||
+            country.name.toLocaleUpperCase().includes(searchText)
+        ))
+    );
+  }
 
   constructor(
     private store: Store<{ cart: { countries: ICountry[] } }>,
@@ -73,6 +87,5 @@ export class CountryComponent implements OnInit {
   navigateToDetails(id: string) {
     this.router.navigate(['/countryDetails', id]);
   }
-
   ngOnInit(): void {}
 }

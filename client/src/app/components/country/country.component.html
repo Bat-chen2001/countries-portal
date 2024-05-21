@@ -1,9 +1,14 @@
 <div class="tableContainer">
     @if (error$|async) {
-    <p>{{error$|async}}</p>
+    <h2>{{error$|async}}</h2>
     }
     @else{
-    <h1>Country portal</h1>
+    <div class="countryHeader">
+        <h1>Country portal</h1>
+        <mat-form-field class="search">
+            <input matInput (keyup)="updateDataSource($event)" placeholder="Search">
+        </mat-form-field>
+    </div>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
         <ng-container matColumnDef="index">
             <th mat-header-cell *matHeaderCellDef firstColumn class="firstColumn"> {{headersColumns[0]}} </th>

@@ -5,11 +5,21 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  h1 {
-    font-size: 33px;
-    color: #333;
-    text-align: center;
-    text-transform: uppercase;
+  .countryHeader {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-size: 33px;
+      color: #333;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .search {
+      font-size: 23px;
+      color: #333;
+      text-align: center;
+      padding-top: 2%;
+    }
   }
   table {
     width: 100%;
