@@ -53,7 +53,7 @@ namespace Repository.Utils
                     country.Region = item.region;
                     country.SubRegion = item.subregion;
                     country.Population = item.population;
-                    country.Flag = item.flags.png;
+                    country.Flag = item.flags.svg;
                     if (item.capital != null && item.capital.Count > 0)
                     {
                         country.Capital = new string[item.capital.Count];

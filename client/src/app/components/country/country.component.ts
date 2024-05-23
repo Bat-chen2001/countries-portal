@@ -68,7 +68,7 @@ export class CountryComponent implements OnInit {
         (this.dataSource.data = countries.filter(
           (country) =>
             country.name.toLocaleLowerCase().includes(searchText) ||
-            country.name.toLocaleUpperCase().includes(searchText)
+            country.name.toLocaleUpperCase().includes(searchText) 
         ))
     );
   }
